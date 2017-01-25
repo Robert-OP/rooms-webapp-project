@@ -1,0 +1,3 @@
+## ignoring extension
+src/ist-rooms/*.pyc
+src/ist-rooms/*.app
