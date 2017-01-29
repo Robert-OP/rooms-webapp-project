@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <title>ISTROOMS</title>
+  </head>
+  <body>
+    <h1>Hello, admin!</h1>
+    <script type="text/javascript">
+      var id = location.pathname.match(/^\/room\/(\d+)$/)[1];
+      
+      $.get(`/spaces/${id}`, function (data) {
+        data = JSON.parse(data);  
+        console.log(data);
+        var info = $("#info");
+        
+        info.append(`
+          <p>Name: ${data.name}</p>
+          <p>Capacity: ${data.capacity.normal}</p>
+          <button onclick="addRoom()">Add room</button>
+          `);
+
+        window.addRoom = function addRoom() {
+          $.post(`/add/${data.name}/${data.capacity.normal}`, function (data) {
+            console.log("done", data);
+          });
+        }
+      })
+    </script>
+    
+    <p>
+    <div id=info>
+    </p>
+  </body>
+</html>

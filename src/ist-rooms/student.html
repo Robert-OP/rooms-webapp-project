@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $.get("/spaces", function (data) {
+        data = JSON.parse(data);
+        console.log(data);
+        console.log(typeof data)
+        var list = $("#campusList");
+        
+        data.forEach(function (element) {
+          list.append(`<li><a href="/entity/${element.id}">${element.name}</a></li>`);
+        })
+      })  
+    </script>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <title>ISTROOMS</title>
+  </head>
+  <body>
+    <h1>Hello, admin!</h1>
+    <p><ul id=campusList></ul></p>
+  </body>
+</html>
