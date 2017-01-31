@@ -1,23 +1,25 @@
 <html>
   <head>
     <title>ISTROOMS</title>
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   </head>
   <body>
     <h1>IST Room Booking System</h1>
     <ul>
-      <li>Admin (ID=0) add room from FENIX system</li>
       <li>Students have to register first with their name (receive ID)</li>
       <li>Students use their ID to checkin/checkout of rooms</li>
+      <li>Admin can add room from FENIX system</li>
     </ul>
-    <form action="/login" method="post">
-      ID: <input name="id_number" type="text" />
-      <input type="submit" value="Login">
-    </form>
     <form action="/register" method="post">
       Username: <input name="username" type="text" />
       <input type="submit" value="Register">
+    </form>
+    <form action="/login/student" method="post">
+      ID: <input name="id_number" type="text" />
+      <input type="submit" value="Login">
+    </form>
+        <form action="/login/admin" method="post">
+      <input type="submit" value="Admin">
     </form>
     <form action="/showrooms" method="get">
       <input type="submit" value="See rooms">

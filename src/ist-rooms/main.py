@@ -11,23 +11,27 @@ app = Bottle()
 def index():
     return template('index.html')
 
-@app.route('/login', method='POST')
+@app.post('/login/student')
 def do_login():
-    # get ID number from the page and see if it is in database
+    # what comes from the form is string
     id_no = request.forms.get('id_number')
-    admin_id = '0'
-    db_id = '11'
-    db_username = 'Robert'
-    # OBS: what comes from the form is string
-    if id_no == db_id:
-        # route to checkin in rooms available
-        return template('student.html')
-    elif id_no == admin_id:
+    # get ID number from the page and see if it is in database
+    # fetch one entry of student with that specific ID
+    user = Student.get_by_id(int(id_no))
+    if user != None:
         # route to give priviledges to add rooms to the database
         # todo: make query to the database and see if ID number is in 
-        return template('admin.html') 
+        return template('student.html') 
     else:
-        return '<p>The ID %s is not registered, please register.</p>' % id_no
+        # return in case ID is not registered
+        return '''<p>The ID %s is not registered, please register.</p>
+                <form action="/" method="get">
+                    <input type="submit" value="Home">
+                </form>''' % id_no
+
+@app.post('/login/admin')
+def do_login():
+    return template('admin.html')
 
 class Student(ndb.Model):
     name = ndb.StringProperty()

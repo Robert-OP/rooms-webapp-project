@@ -2,32 +2,26 @@
   <head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script type="text/javascript">
-  var id = location.pathname.match(/^\/entity\/(\d+)$/)[1];
-$.get(`/spaces/${id}`, function (data) {
-  data = JSON.parse(data);
-
-console.log(location.pathname)
-  console.log(data);
-  console.log(typeof data)
-  var list = $("#campusList");
-  data.containedSpaces.forEach(function (element) {
-    if (element.type === "ROOM")
-  list.append(`<li><a href="/room/${element.id}">${element.name}</a></li>`);
-else
-  list.append(`<li><a href="/entity/${element.id}">${element.name}</a></li>`);
-  })
-  
-})
-  
-</script>
-    <title>ISTROOMS</title>
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    var id = location.pathname.match(/^\/entity\/(\d+)$/)[1];
+    $.get(`/spaces/${id}`, function (data) {
+      data = JSON.parse(data);
+      // console.log(location.pathname)
+      // console.log(data);
+      // console.log(typeof data)
+      var list = $("#campusList");
+      data.containedSpaces.forEach(function (element) {
+        if (element.type === "ROOM")
+          list.append(`<li><a href="/room/${element.id}">${element.name}</a></li>`);
+        else
+          list.append(`<li><a href="/entity/${element.id}">${element.name}</a></li>`);
+      })
+    })
+  </script>
+  <title>ISTROOMS</title>
   </head>
   <body>
     <h1>Hello, admin!</h1>
-    <p>
-    <ul id=campusList>
-    </ul>
-    </p>
+    <h3>Campus list:</h3>
+    <p><ul id=campusList></ul></p>
   </body>
 </html>
