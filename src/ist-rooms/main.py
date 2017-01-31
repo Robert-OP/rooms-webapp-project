@@ -40,12 +40,15 @@ class Student(ndb.Model):
 
 @app.route('/register', method='POST')
 def do_register():
-    # get username from the page and assign an ID and insert in database
+    # get username from the page and add to datastore
     username = request.forms.get('username')
     student = Student(name=username, checkin=0)
     key = student.put()
-    # todo: make query to the database and see what is the last ID number
-    return 'Hello %s, this is your ID: %s' % (student, str(key.id()))
+    return '''<h3>Hello %s, this is your ID: %s</h3>
+            <form action="/login/student" method="post">
+                ID: <input name="id_number" type="text" />
+                <input type="submit" value="Login">
+            </form>''' % (student.name, str(key.id()))
 
 @app.get('/entity/<id>')
 def list_campus(id):
