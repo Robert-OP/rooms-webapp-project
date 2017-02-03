@@ -142,7 +142,7 @@ def add_room(room, capacity):
     return 'Room: %s added with ID: %s' % (r.name, str(key.id()))
 
 @app.route('/showrooms')
-# shows all rooms added by admin in datastore + students checked in
+# shows all rooms added by admin in datastore + students checked in (Not REST)
 def show_rooms():
     out = ''
     rooms = Room.query()
@@ -151,7 +151,7 @@ def show_rooms():
     return out
 
 @app.route('/students')
-# shows all students registered in datastore and their details
+# shows all students registered in datastore and their details (Not REST)
 def show_students():
     out = ''
     students = Student.query()
