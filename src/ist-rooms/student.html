@@ -1,12 +1,53 @@
 <html>
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+      function test(data) {
+        console.log(data);
+        var rooms = $("#rooms");
+        
+        for (var i = data.length - 1; i >= 0; i--) {
+          rooms.append(`
+          <p>Name: ${data[i].name} | Capacity: ${data[i].capacity} | Occupancy: ${data[i].occupancy}
+          <button onclick="checkinRoom(${data[i].id})">Checkin</button>
+          </p>
+          `);
+        }
+      }
+
+      var student_id = location.pathname.match(/^\/student\/(\d+)$/)[1];
+
+      window.checkinRoom = function checkinRoom(id) {
+        console.log(id);
+        $.post(`/student/${student_id}/${id}`, function (data) {
+          var display = $("#display");
+          console.log(data);
+          display.append(`${data}`);
+        });
+      }
+    
+    </script>
     <title>ISTROOMS</title>
   </head>
   <body>
-    <h1>Hello, student!</h1>
+    <h1>Hello, {{user}}!</h1>
+    
     <form action="/" method="get">
       <input type="submit" value="Home">
     </form>
+    
+    <button id="bind" onclick="test({{data}})">Browse Rooms</button>
+    
+    <p><div id=rooms></p>
+    <p><div id=display></p>  
+    <!-- <p>{{data}}</p> -->
+
+  <script>
+    $( "#bind" ).on('click', function() {
+        $(this).attr("disabled", "disabled");
+    });
+  </script>
+
   </body>
 </html>

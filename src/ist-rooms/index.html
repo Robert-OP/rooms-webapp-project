@@ -5,27 +5,47 @@
   </head>
   <body>
     <h1>IST Room Booking System</h1>
+    
     <ul>
       <li>Students have to register first with their name (receive ID)</li>
       <li>Students use their ID to checkin/checkout of rooms</li>
       <li>Admin can add room from FENIX system</li>
     </ul>
+    
     <form action="/register" method="post">
       Username: <input name="username" type="text" />
       <input type="submit" value="Register">
     </form>
-    <form action="/login/student" method="post">
+    
+    <!-- <form action="/login/student" method="post">
       ID: <input name="id_number" type="text" />
       <input type="submit" value="Login">
+    </form> -->
+    
+    <form>
+      ID: <input id="id_number" name="id_number" type="text" />
+      <input type="button" onclick="doLogin()" value="Login">
     </form>
-        <form action="/login/admin" method="post">
+
+    <form action="/login/admin" method="post">
       <input type="submit" value="Admin">
     </form>
+    
     <form action="/showrooms" method="get">
       <input type="submit" value="See rooms">
     </form>
+    
     <form action="/students" method="get">
       <input type="submit" value="See students">
     </form>
+
+    <script type="text/javascript">
+      function doLogin() {
+        let a = $('#id_number').val().trim();
+        console.log(a);
+        location.href = location.origin + `/student/${a}`;
+      }
+    </script>
+    
   </body>
 </html>

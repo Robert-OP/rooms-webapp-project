@@ -21,16 +21,20 @@
 
         window.addRoom = function addRoom() {
           $.post(`/add/${data.name}/${data.capacity.normal}`, function (data) {
-            console.log("done", data);
+            console.log(data);
+            display.append(`${data}`);
           });
         }
       })
     </script>
-    <p>
-    <div id=info>
-    </p>
+    
+    <p><div id=info></p>
+    
+    <p><div id=display></p>
+    
     <form action="/" method="get">
       <input type="submit" value="Home">
     </form>
+
   </body>
 </html>
