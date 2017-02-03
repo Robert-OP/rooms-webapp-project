@@ -147,7 +147,7 @@ def show_rooms():
     out = ''
     rooms = Room.query()
     for r in rooms:
-        out += ' Name: ' + r.name + ' |Occupancy: ' + str(r.occupancy) + ' |Capacity: ' + r.capacity + ' |ID: ' + str(r.key.id()) + ' |Date: ' + str(r.date) + '<br>' + str(dumps(r.students)) + '<br>'
+        out += ' Name: ' + r.name + ' |Occupancy: ' + str(r.occupancy) + ' |Capacity: ' + str(r.capacity) + ' |ID: ' + str(r.key.id()) + ' |Date: ' + str(r.date) + '<br>' + str(dumps(r.students)) + '<br>'
     return out
 
 @app.route('/students')
