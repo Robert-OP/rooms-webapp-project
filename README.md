@@ -2,8 +2,6 @@
 ## Internet Based System Architectures
 ## Institure Tecnico Superior
 
-### WORK IN PROGRESS...WILL BE PUSHED AFTER EVALUATION
-
 ### Introduction:
 Students at IST have difficulties regarding the space required to study while on campus. Such that, a way to manage this situation would be the creation of a system in which students can book their own space in a specific room. Such a system would be managed daily by admins which make rooms on campus available to students. 
 
